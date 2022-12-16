@@ -4,13 +4,10 @@ use std::cmp::Ordering;
 
 fn main() {
     // Ask the user to guess a number. 
-    println!("Guess the number!\n Please input your guess.");
+    println!("A secret number between 1 and 10 has been generated. Try to guess the number!\n Please input your guess.");
 
-    let secret_number: u32 = rand::thread_rng().gen_range(1..=100);
+    let secret_number: u32 = rand::thread_rng().gen_range(1..=10);
 
-    println!("The secret number is: {secret_number}\nPlease input your guess.");
-
-    
     loop {
         // Collect the answer from the user.
         let mut guess = String::new();
@@ -21,7 +18,10 @@ fn main() {
         // Shadow the guess variable
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue
+            Err(_) => {
+                println!("What you entered is an invalid. Please enter a integer.");
+                continue;
+            }
         };
     
         // Inform the user about the guess value.
