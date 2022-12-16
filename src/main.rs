@@ -19,7 +19,10 @@ fn main() {
             .expect("Failed to read line.");
     
         // Shadow the guess variable
-        let guess: u32 = guess.trim().parse().expect("Please enter a number.");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue
+        };
     
         // Inform the user about the guess value.
         println!("You guessed: {}", guess);
